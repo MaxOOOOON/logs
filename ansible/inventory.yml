@@ -1,0 +1,14 @@
+all:
+  hosts:
+    log:
+      ansible_port: 22
+      ansible_host: 10.13.1.101
+      ansible_private_key_file: .vagrant/machines/log/virtualbox/private_key
+    web:
+      ansible_port: 22
+      ansible_host: 10.13.1.102
+      ansible_private_key_file: .vagrant/machines/web/virtualbox/private_key
+    elk:
+      ansible_port: 22
+      ansible_host: 10.13.1.103
+      ansible_private_key_file: .vagrant/machines/elk/virtualbox/private_key

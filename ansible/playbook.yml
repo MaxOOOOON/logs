@@ -1,0 +1,21 @@
+---
+- name: log
+  hosts: log
+  gather_facts: false
+  roles:
+    - log
+  become: true
+
+- name: web
+  hosts: web
+  gather_facts: false
+  roles:
+    - nginx_r
+  become: true
+
+- name: elk
+  hosts: elk
+  gather_facts: false
+  roles:
+    - elk_r
+  become: true
