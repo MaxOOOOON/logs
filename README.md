@@ -24,7 +24,11 @@
 
 
 
-Тестовый стенд:
-3 виртуальных машины(запущены через vagrant)
-1 машина с ansible 
+Тестовый стенд:     
+3 виртуальных машины(запущены через vagrant)    
+1 машина с ansible  
 
+Логи rsyslog 
+ ![](https://github.com/MaxOOOOON/logs/blob/main/ansible/Screenshot%202021-09-30%20224921.png)
+Логи в elk 
+ ![](https://github.com/MaxOOOOON/logs/blob/main/ansible/Screenshot%202021-09-30%20224954.png)
