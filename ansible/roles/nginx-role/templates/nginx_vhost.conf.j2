@@ -1,0 +1,13 @@
+server {
+        listen 80 default_server;
+        server_name localhost;
+
+        location / {
+                root    /usr/share/nginx/html;
+                index   index.html.j2;
+        }
+
+        location = /404.html {
+                internal;
+        }
+}

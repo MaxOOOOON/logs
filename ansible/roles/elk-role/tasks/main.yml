@@ -1,0 +1,88 @@
+---
+- name: ELK | Place yum config for elasticsearch repo
+  template:
+      src: elasticsearch.repo.j2
+      dest: /etc/yum.repos.d/elasticsearch.repo
+  tags:
+    - elasticsearch-repo
+    - packages
+    - elk
+    - templates
+
+- name: JDK | Install openjdk
+  yum:
+    name: java
+    state: latest
+  tags:
+    - elasticsearch
+    - packages
+    - jdk
+
+- name: ELASTICSEARCH | Install elasticsearch package from RPM
+  yum:
+    name: elasticsearch
+    state: present
+  tags:
+    - elasticsearch
+    - packages
+  notify:
+    - start elasticsearch
+
+- name: LOGSTASH | Install logstash package from RPM
+  yum:
+    name: logstash
+    state: present
+  tags:
+    - logstash
+    - packages
+  notify:
+    - start logstash
+
+- name: LOGSTASH | Place input yaml
+  template:
+    src: input.conf.j2
+    dest: /etc/logstash/conf.d/02-input.conf
+  tags:
+    - logstash
+    - templates
+  notify:
+    - restart logstash
+
+- name: LOGSTASH | Place fiter yaml
+  template:
+    src: filter.conf.j2
+    dest: /etc/logstash/conf.d/10-filter.conf
+  tags:
+    - logstash
+    - templates
+  notify:
+    - restart logstash
+
+- name: LOGSTASH | Place output yaml
+  template:
+    src: output.conf.j2
+    dest: /etc/logstash/conf.d/20-output.conf
+  tags:
+    - logstash
+    - templates
+  notify:
+    - restart logstash
+
+- name: KIBANA | Install kibana package from RPM
+  yum:
+    name: kibana
+    state: present
+  tags:
+    - kibana
+    - packages
+  notify:
+    - start kibana
+
+- name: KIBANA | Place kibana yaml
+  template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+
+- name: Reboot elk
+  reboot: 
+    msg : "Reboot initiated by Ansible"

@@ -1,21 +1,21 @@
 ---
-- name: log
+- name: "Сonfiguring the log server"
   hosts: log
   gather_facts: false
   roles:
-    - log
+    - log-role
   become: true
 
-- name: web
+- name: "Сonfiguring the web server"
   hosts: web
   gather_facts: false
   roles:
-    - nginx_r
+    - nginx-role
   become: true
 
-- name: elk
+- name: "Сonfiguring the elk server"
   hosts: elk
   gather_facts: false
   roles:
-    - elk_r
+    - elk-role
   become: true
